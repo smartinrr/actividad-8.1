@@ -22,18 +22,12 @@ function showData(dataArray) {
 
 fetch(DATA_URL)
   .then(response => {
-    // Verificamos si la respuesta es correcta (status code 200)
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    // Convertimos la respuesta a JSON
-    return response.json();
+    if (response.ok) 
+    return response.json(); 
   })
-  .then(data => {
-    // Llamamos a la función showData para mostrar los datos en el DOM
-    showData(data);
+  .then(json => {
+    showData(json.students); 
   })
   .catch(error => {
-    // Manejamos cualquier error que ocurra durante el fetch
-    console.error('There was a problem with the fetch operation:', error);
+    console.log('Solicitud fallida', error);
   });
